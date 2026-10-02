@@ -1,1 +1,1 @@
-
+export default async function handler(req,res){try{const url='https://opensky-network.org/api/states/all?lamin=51.8&lomin=24.5&lamax=56.2&lomax=31.8';const r=await fetch(url,{headers:{'Accept':'application/json'}});if(!r.ok){res.status(r.status).json({error:'OpenSky returned '+r.status});return;}const data=await r.json();res.setHeader('Cache-Control','s-maxage=8, stale-while-revalidate=12');res.status(200).json(data);}catch(e){res.status(502).json({error:'Источник данных недоступен'});}}
